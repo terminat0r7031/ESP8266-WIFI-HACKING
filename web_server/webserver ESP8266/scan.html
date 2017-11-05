@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WIFI HACKING</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="bg-main-color">
+	<div id="header">
+		<div class="container">
+			<button id="menu-btn" class="pull-left">MENU</button>
+			<div id="info-user" class="pull-right">
+				<a href="index.html">WIFI HACKING BOX!</a>
+			</div>
+
+			<div id="main-menu" class="bg-main-color">
+				<ul>
+					<li><a href="scan.html">Scan Access Points</a></li>
+					<li><a href="">Beacon Attack</a></li>
+					<li><a href="monitor.html">Network Monitor</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div id="content">
+		<div class="container">
+			<div class="label-heading">
+				<div class="pull-left">
+					<h3>Scanning Access Points</h3>
+				</div>
+				<div class="pull-right">
+					<button class="btn-main" id="scanAp-btn" onclick="scan.startScanAp()">Scan</button>
+				</div>
+			</div>
+
+			<div id="tabel-scan-contain">
+				<table>
+					<thead>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div id="scan-station-btn">
+				<button class="btn-main" id="scanStationBtn" onclick="scan.startScanST()">SCAN STATION</button>
+				<button class="btn-main" id="attackAllBtn" onclick="scan.Attack('de', true)">ATTACK ALL</button>
+			</div>
+
+			<div id="table-scan-station">
+				<h3 id="bssidAPSL"></h3>
+				<table>
+					<thead>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+
+			<div id="attack-station-btn">
+				<button class="btn-main" id="DeAttackBtn" onclick="scan.Attack('de', false)">Deauthentication ATTACK</button>
+				<button class="btn-main" id="DisAttackBtn" onclick="scan.Attack('dis', false)">Disassociation ATTACK</button>
+			</div>
+
+
+			<div id="modal">
+				<h3>Time for running!</h3>
+				<select class="btn-main" id="selectTiming">
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option value="40">40</option>
+					<option value="50">50</option>
+				</select>
+				<button class="btn-main" id="btnOkTiming">Ok</button>
+			</div>
+
+		</div>
+
+	</div>
+	
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
