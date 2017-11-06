@@ -1,0 +1,191 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	margin: 0;
+	padding: 0;	
+	font-family: Courier;
+}
+
+.bg-main-color{
+	background-color: #202020;
+	color: #cccccc;
+}
+.pull-left{
+	float: left;
+}
+
+.pull-right{
+	float: right;
+}
+
+.btn-main{
+	background-color: black;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 0 0 5px grey;
+}
+
+.btn-main:hover,
+.btn-main:active{
+	background-color: #191919;
+}
+
+#choose-attack-btn .btn-main{
+	padding: 10px;
+	box-shadow: 0 2px 5px grey;
+
+}
+
+.btn-active{
+	box-shadow: 0 0 5px red;
+}
+
+.btn-inactive{
+	pointer-events: none;
+	cursor: not-allowed;
+	opacity: 0.2; 
+}
+
+.container{
+	width: 1170px;
+	padding: 5px 15px;
+	margin: 0 auto;
+}
+
+
+
+ul{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+
+#header{
+	overflow: hidden;
+	height: 45px;
+	box-shadow: 0 5px 10px black;
+}
+#header #menu-btn{
+	border: none; outline: none;
+	/*background-color: #bdc9cc;*/
+	padding: 10px;
+	cursor: pointer;
+	color: black;
+	font-weight: bold;
+}
+#header #menu-btn:hover{
+	background-color: grey;
+}
+#header #info-user{
+	padding-top: 10px;
+}
+
+#header #info-user p{
+	margin:0;
+}
+#header #info-user a{
+	margin: 0;
+	color: grey;
+}
+
+#header #main-menu{
+	width: 50vw;
+	height: 93vh;
+	position: absolute;
+	top: 45px;
+	text-align: center;
+	display: none;
+}
+#header #main-menu ul{
+	box-shadow: 5px 5px 10px black;
+}
+#header #main-menu li a{
+	padding: 10px;
+	display: block;
+	color: white;
+	border-bottom: 1px solid grey;
+}
+#header #main-menu li a:hover{
+	background-color: #596163;
+}
+
+
+/*CONTENT*/
+
+#content{
+	text-align: center;
+	padding: 15px 0;
+}
+
+#content .label-heading:after, #content .label-heading:before{
+	content: " ";
+    display: table;
+}
+#content .label-heading:after{
+	clear: both;
+}
+
+#content .label-heading{
+	padding: 8px;
+	box-shadow: 0 0px 10px black;
+	border-radius: 5px;
+}
+#content .label-heading h3{
+	margin: 0;
+}
+
+#content #modal {
+	position: absolute;
+	left: 50%;
+	top: 50vh;
+	background-color: grey;
+	padding: 0px 10px 20px 10px;
+	transform: translate(-50%, -50%);
+	color: black;
+	display: none;
+}
+
+#scan-station-btn, #attack-station-btn, #show-ap-results{
+	display: none;
+}
+
+
+#tabel-scan-contain, #table-scan-station{
+	padding: 15px;
+}
+
+#tabel-scan-contain table, #table-scan-station table{
+	width: 100%;
+}
+
+
+.hide{
+	display: none !important;
+}
+
+.show{
+	display: inline-block !important;
+}
+
+
+/*Responsive*/
+
+@media all and (max-width: 900px){
+	.container{
+		width: 100%;
+	}
+}
+@media all and (max-width: 560px){
+	
+}
