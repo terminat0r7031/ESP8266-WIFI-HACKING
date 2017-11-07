@@ -26,6 +26,10 @@
 		if(_function.getEleByID(id).className.indexOf(className) != -1) return true;
 		return false;
 	}
+
+	_function.randInt = (min, max)=>{
+		return Math.floor(Math.random()*(max - min + 1) + min);
+	}
 	
 }( window._function = window._function || {}));
 
@@ -309,25 +313,119 @@
     //Private Property
     var intervalGetData;
     var numCheck = 0;
+    var time = 10;
+    var timeDelay = 2000;
+    var maxGoiTin = 40;
+    var value = {bc: 0, de: 0, dis: 0};
+
+    var cv = _function.getEleByID("canvas"),
+    		ctx = cv.getContext("2d");
+    var wi = window.innerWidth*80/100;
+    var w = cv.width = wi > 500?500:wi;
+    var h = cv.height = cv.width*2/3;
+
+    var dramX = w/(time/2),
+    		dramY = h/(maxGoiTin/5);
+
+    var x1,y1,x2,y2,x3,y3;
     //Public Method
+    monitor.initChart = ()=>{
+    	cv.style.backgroundColor = "black";
+
+    	dramX = w/(time/2),
+			dramY = h/(maxGoiTin/5);
+
+    	//draw cot doc
+    	ctx.beginPath();
+    	ctx.strokeStyle = "white";
+    	ctx.moveTo(dramX/2,dramY);
+			ctx.lineTo(dramX/2,h-dramY);
+			ctx.stroke();
+
+			ctx.moveTo(dramX/2,dramY);
+			ctx.lineTo(dramX/2 - dramX/4, dramY + dramX/4);
+			ctx.stroke();
+
+			ctx.moveTo(dramX/2,dramY);
+			ctx.lineTo(dramX/2 + dramX/4, dramY + dramX/4);
+			ctx.stroke();
+
+			//draw doc ngang
+			ctx.beginPath();
+			ctx.strokeStyle = "white";
+    	ctx.moveTo(dramX/2,h-dramY);
+			ctx.lineTo(w - dramX/2, h-dramY);
+			ctx.stroke();
+
+			ctx.moveTo(w - dramX/2,h-dramY);
+			ctx.lineTo(w - dramX/2 - dramX/4, h-dramY - dramX/4);
+			ctx.stroke();
+
+			ctx.moveTo(w - dramX/2,h-dramY);
+			ctx.lineTo(w - dramX/2 - dramX/4, h-dramY + dramX/4);
+			ctx.stroke();
+
+			x1=x2=x3 = dramX/2;
+			y1=y2=y3 = h-dramY;
+    }
+
+    monitor.drawChart = ()=>{
+    	ctx.beginPath();
+    	ctx.strokeStyle = "green";
+    	ctx.moveTo(x1,y1);
+			x1 = x1+(dramX*(time/2-1))/(time/2); y1 = value.bc*dramY/5;
+			ctx.lineTo(x1, y1);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.strokeStyle = "red";
+			ctx.moveTo(x2,y2);
+			x2 = x2+(dramX*(time/2-1))/(time/2); y2 = value.de==0?(h - dramY):(h - value.de*dramY/5);
+			ctx.lineTo(x2, y2);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.strokeStyle = "yellow";
+			ctx.moveTo(x3,y3);
+			x3 = x3+(dramX*(time/2-1))/(time/2); y3 = value.dis==0?(h - dramY):(h - value.dis*dramY/5);
+			ctx.lineTo(x3, y3);
+			ctx.stroke();
+    }
+
     monitor.getData = ()=>{
     	if(numCheck == 1){
 	    	intervalGetData = setInterval(()=>{
 					fetch("/sendMonitorResults.json").then(res=>res.json())
 					.then(data=>{
 						console.log(data);
-					})    		
-	    	}, 2000)
+						value.bc = parseInt(data.bc);
+						value.de = parseInt(data.de);
+						value.dis = parseInt(data.dis);
+						monitor.drawChart();
+					})
+	    	}, timeDelay)
     	}
     }
     monitor.run = ()=>{
+    	
     	_function.getEleByID("netMonitorBtn").classList.toggle("btn-inactive");
 
 	  	_function.toggleDisplay("modal", 'show');
 
 	  	_function.getEleByID("btnOkTiming").onclick = ()=>{
+	  		
 	  		_function.toggleDisplay("modal", 'show');
-	  		let time = _function.getEleByID("selectTiming").value;
+	  		
+	  		time = _function.getEleByID("selectTiming").value;
+	  		
+	  		monitor.initChart();
+		setInterval(()=>{
+			value.bc = _function.randInt(10,15);
+			value.de = _function.randInt(10,15);
+			value.dis = _function.randInt(10,15);
+			monitor.drawChart();
+		}, 2000)
+
     		let url= `/startMonitorEnv.json?time=${time}&channel=1`;
     		fetch(url).then(res=>res.json())
     		.then(data=>{
@@ -337,11 +435,12 @@
     					.then(check=>{
     						if(check){
     							numCheck++;
-    							monitor.getData();
+    							//monitor.getData();
     						} else {
     							clearInterval(intervalGetData);
     							clearInterval(checkStatus);
     							console.log('done');
+    							return false;
     						}
     					})	
     				}, 500)
