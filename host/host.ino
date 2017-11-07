@@ -198,15 +198,38 @@ void responseSelectStation() {
 //---- 3. TẤN CÔNG BEACON FLOOD ----//
 
 void requestBeaconAttack() {
-  if (server.hasArg("ssid") && server.hasArg("time")) {
-    _status = 1;
-    String cmd = "RQ_BC_AT ";
-    cmd += server.arg("ssid");
-    cmd += " ";
-    cmd += server.arg("time").toInt();
-    Serial.println(cmd);
-    server.send(200, "text/json", "true");
+  if(server.hasArg("random") && server.hasArg("time") && server.hasArg("ssid")){
+    int rd = server.arg("random").toInt();
+    if(rd==1){
+      _status = 1;
+      String cmd = "RQ_BC_AT ";
+      cmd += rd;
+      cmd += " ";
+      cmd += server.arg("time").toInt();
+      Serial.println(cmd);
+      server.send(200,"text/json","true");
+    }
+    else{
+      _status = 1;
+      String cmd = "RQ_BC_AT ";
+      cmd += rd;
+      cmd += " ";
+      cmd += server.arg("time").toInt();
+      cmd += " ";
+      cmd += server.arg("ssid");
+      Serial.println(cmd);
+      server.send(200,"text/json","true");
+    }
   }
+//  if (server.hasArg("ssid") && server.hasArg("time")) {
+//    _status = 1;
+//    String cmd = "RQ_BC_AT ";
+//    cmd += server.arg("ssid");
+//    cmd += " ";
+//    cmd += server.arg("time").toInt();
+//    Serial.println(cmd);
+//    server.send(200, "text/json", "true");
+//  }
 }
 void responseBeaconAttack() {
   digitalWrite(BUILTIN_LED, LOW);

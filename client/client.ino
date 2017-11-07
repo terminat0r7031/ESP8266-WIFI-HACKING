@@ -112,19 +112,39 @@ void beaconAttack() {
   char* argu;
   argu = sCmd.next();
   if (argu != NULL) {
-    String ssid = charToString(argu);
-    Serial.println(ssid);
-    if (ssid == "RD") {
-      argu = sCmd.next();
-      int timeout = (argu != NULL) ? atoi(argu) : 20;
-      beacon.attack(timeout);
-    }
-    else {
-      argu = sCmd.next();
-      int timeout = (argu != NULL) ? atoi(argu) : 20;
-      beacon.attack(ssid, timeout);
+    int rd = atoi(argu);
+    argu = sCmd.next();
+    if (argu != NULL) {
+      if (rd == 1) {
+        int timeout = atoi(argu);
+        beacon.attack(timeout);
+      }
+      else {
+        int timeout = atoi(argu);
+        argu = sCmd.next();
+        if (argu != NULL) {
+          String ssid = charToString(argu);
+          beacon.attack(ssid, timeout);
+        }
+      }
     }
   }
+  //  if (argu != NULL) {
+  //    int rd = (int) atoi(argu);
+  //    argu = sCmd.next();
+  //    }
+  //    String ssid = charToString(argu);
+  //    if (ssid == "RD") {
+  //      argu = sCmd.next();
+  //      int timeout = (argu != NULL) ? atoi(argu) : 20;
+  //      beacon.attack(timeout);
+  //    }
+  //    else {
+  //      argu = sCmd.next();
+  //      int timeout = (argu != NULL) ? atoi(argu) : 20;
+  //      beacon.attack(ssid, timeout);
+  //    }
+  //  }
   delay(200);
   digitalWrite(BUILTIN_LED, HIGH);
 }
