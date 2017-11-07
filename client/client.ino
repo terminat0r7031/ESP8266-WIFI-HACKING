@@ -104,9 +104,10 @@ void printSelectedStation() {
 }
 
 //---- 3. TẤN CÔNG BEACON FLOOD ----//
+// Đối số "THỨ 2" trong SerialCommand là Random flag. Nếu random = 1 thì tấn công essid ngẫu nhiên, nếu random = 0 thì tấn công tới essid đặt sẵn
+// Đối số "THỨ 3" trong SerialCommand là thời gian thực hiện tấn công.
+// Đối số "THỨ 4" trong SerialCommand là ssid muốn giả mạo.
 
-// Đối số "THỨ 2" trong SerialCommand là ssid muốn giả mạo. Nếu = "RD" (Random) thì cho sinh ra các ssid ngẫu nhiên.
-// Đối số "THỨ 3" trong SerialCommand là thời gian thực hiện tấn công. Mặc định là "20 GIÂY".
 void beaconAttack() {
   digitalWrite(BUILTIN_LED, LOW);
   char* argu;
