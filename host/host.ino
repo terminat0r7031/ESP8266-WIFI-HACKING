@@ -20,40 +20,40 @@ const char* essid = "abcdabcd";
 const char* password = "khongbietdau";
 
 //----KHAI BAO PROTOTYPE----------//
-//void startWifi();
-//void requestStartScanAP();
-//void responseStartScanAP();
-//void requestSendScanAPResults();
-//void sendScanAPResults();
-//void requestSelectAP();
-//void responeSelectAP();
-//
-//void requestStartScanStation();
-//void responseStartScanStation();
-//void requestSendScanStationResults();
-//void responseSendScanStationResults();
-//void sendScanStationResults();
-//void requestSelectStation();
-//void responseSelectStation();
-//void requestBeaconAttack();
-//void responseBeaconAttack();
-//void requestDeDisAttack();
-//void responseDeDisAttack();
-//void requestStartMonitorEnv();
-//void responseStartMonitorEnv1();
-//void responseStartMonitorEnv2();
-//void sendMonitorResults();
-//void checkStatus();
-//void loadIndexHTML();
-//void loadScanApHTML();
-//void loadScriptJS();
-//void loadStyleCSS();
-//
-//String charToString(const char* s);
-//void sendBuffer();
-//void sendToBuffer(String str);
-//void sendHeader(int code, String type, size_t _size);
-//void sendFile(int code, String type, const char* adr, size_t len);
+void startWifi();
+void requestStartScanAP();
+void responseStartScanAP();
+void requestSendScanAPResults();
+void sendScanAPResults();
+void requestSelectAP();
+void responeSelectAP();
+
+void requestStartScanStation();
+void responseStartScanStation();
+void requestSendScanStationResults();
+void responseSendScanStationResults();
+void sendScanStationResults();
+void requestSelectStation();
+void responseSelectStation();
+void requestBeaconAttack();
+void responseBeaconAttack();
+void requestDeDisAttack();
+void responseDeDisAttack();
+void requestStartMonitorEnv();
+void responseStartMonitorEnv1();
+void responseStartMonitorEnv2();
+void sendMonitorResults();
+void checkStatus();
+void loadIndexHTML();
+void loadScanApHTML();
+void loadScriptJS();
+void loadStyleCSS();
+
+String charToString(const char* s);
+void sendBuffer();
+void sendToBuffer(String str);
+void sendHeader(int code, String type, size_t _size);
+void sendFile(int code, String type, const char* adr, size_t len);
 
 
 //---- KHỞI TẠO ACCESS POINT ----//
