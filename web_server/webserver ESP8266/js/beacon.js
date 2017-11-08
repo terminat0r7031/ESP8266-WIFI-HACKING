@@ -1,39 +1,44 @@
 (function( _beacon ) {
     //Private Property
-    var isRandom = false;
+    var isRamdom = false;
     var time = 10;
     var ssid = "";
     var url = "";
     //Public Method
     _beacon.init = () =>{
     	_function.getEleByID("randomATBC").onclick = ()=>{
+    		isRamdom = true;
     		_function.getEleByID("ssid").disabled  = true;
-    		isRandom = true;
+    		_function.getEleByID("ssid").value = "";
     	}
     	_function.getEleByID("custumATBC").onclick = ()=>{
+    		isRamdom = false;
     		_function.getEleByID("ssid").disabled  = false;
-    		isRandom = false;
     	}
     }
     _beacon.attack = ()=>{
     	time = _function.getEleByID("timeAttackBc").value;
     	ssid = _function.getEleByID("ssid").value;
-    	if(isRandom){
-    		if(time==""){
-    			url = "";
-    			alert("Please type time to attack!");
-    		}
-    		else url = `/beaconAttack.json?random=1&time=${time}`;
-    	} else {
-    		if(time=="" || ssid == ""){
-    			alert("Please type time and ssid to attack!");
-    			url = "";
-    		} 
-    		else
-    			url = `/beaconAttack.json?random=1&time=${time}&ssid=${ssid}`;
-    	}
-    	if(url != ""){
-    		alert('ok');
+
+    	if((isRamdom && time != "") || (!isRamdom && time !="" && ssid != "")){
+    		url = `/beaconAttack.json?random=${ssid==''?'1':'0'}&time=${time}&ssid=${ssid}`;
+    		console.log(url);
+
+    		_function.getEleByID("beacon-attack-btn").classList.toggle("btn-inactive");
+
+    		fetch(url).then(res=>res.json())
+    		.then(data=>{
+    			if(data){
+    				fetch('/checkStatus.json').then(res=>res.json())
+					.then(check=>{
+						if(!check){
+							_function.getEleByID("beacon-attack-btn").classList.toggle("btn-inactive");
+						}
+					})	
+    			}
+    		})
+    	} else{
+    		alert("You can not leave that empty!");
     	}
     }
     //Private Method
