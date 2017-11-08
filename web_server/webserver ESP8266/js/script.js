@@ -1,4 +1,3 @@
-
 (function( _function ) {
   //Private Method
   function getJson(url) {
@@ -67,6 +66,3 @@ document.addEventListener("click", (e)=>{
 		scan.selectST(parseInt(id.split("").reverse().join("")));
 	}
 })
-
-
-

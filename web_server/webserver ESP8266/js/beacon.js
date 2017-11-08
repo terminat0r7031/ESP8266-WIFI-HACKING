@@ -29,12 +29,15 @@
     		fetch(url).then(res=>res.json())
     		.then(data=>{
     			if(data){
-    				fetch('/checkStatus.json').then(res=>res.json())
-					.then(check=>{
-						if(!check){
-							_function.getEleByID("beacon-attack-btn").classList.toggle("btn-inactive");
-						}
-					})	
+    				let checkStatus = setInterval(()=>{
+                        fetch('/checkStatus.json').then(res=>res.json())
+                        .then(check=>{
+                            if(!check){
+                                clearInterval(checkStatus);
+                                _function.getEleByID("beacon-attack-btn").classList.toggle("btn-inactive");
+                            }
+                        }) 
+                    }, 500)
     			}
     		})
     	} else{
