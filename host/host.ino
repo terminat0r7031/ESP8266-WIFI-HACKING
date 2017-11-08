@@ -44,9 +44,15 @@ void responseStartMonitorEnv1();
 void responseStartMonitorEnv2();
 void sendMonitorResults();
 void checkStatus();
+
 void loadIndexHTML();
 void loadScanApHTML();
+void loadMonitorHTML();
+void loadBeaconHTML();
 void loadScriptJS();
+void loadScanJS();
+void loadMonitorJS();
+void loadBeaconJS();
 void loadStyleCSS();
 
 String charToString(const char* s);
@@ -230,6 +236,7 @@ void requestBeaconAttack() {
   //    server.send(200, "text/json", "true");
   //  }
 }
+
 void responseBeaconAttack() {
   digitalWrite(BUILTIN_LED, LOW);
   _status = 0;
@@ -321,8 +328,21 @@ void loadScanApHTML() {
 void loadMonitorHTML() {
   sendFile(200, "text/html", data_monitorHTML, sizeof(data_monitorHTML));
 }
+void loadBeaconHTML(){
+  sendFile(200, "text/html", data_beaconHTML, sizeof(data_beaconHTML));
+}
+
 void loadScriptJS() {
   sendFile(200, "text/javascript", data_scriptJS, sizeof(data_scriptJS));
+}
+void loadScanJS() {
+  sendFile(200, "text/javascript", data_scanJS, sizeof(data_scanJS));
+}
+void loadMonitorJS() {
+  sendFile(200, "text/javascript", data_monitorJS, sizeof(data_monitorJS));
+}
+void loadBeaconJS() {
+  sendFile(200, "text/javascript", data_beaconJS, sizeof(data_beaconJS));
 }
 
 void loadStyleCSS() {
@@ -403,7 +423,13 @@ void setup() {
   server.on("/index.html", loadIndexHTML);
   server.on("/scan.html", loadScanApHTML);
   server.on("/monitor.html", loadMonitorHTML);
+  server.on("/beacon.html", loadBeaconHTML);
+  
   server.on("/js/script.js", loadScriptJS);
+  server.on("/js/scan.js", loadScanJS);
+  server.on("/js/monitor.js", loadMonitorJS);
+  server.on("/js/beacon.js", loadBeaconJS);
+  
   server.on("/css/style.css", loadStyleCSS);
   server.begin();
 }
