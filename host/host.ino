@@ -218,7 +218,6 @@ void requestBeaconAttack() {
       cmd += server.arg("ssid");
       Serial.println(cmd);
       server.send(200, "text/json", "true");
-      server.send(200, "text/json", cmd);
     }
   }
   //  if (server.hasArg("ssid") && server.hasArg("time")) {
