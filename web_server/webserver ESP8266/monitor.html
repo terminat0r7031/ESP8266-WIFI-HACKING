@@ -16,7 +16,7 @@
 			<div id="main-menu" class="bg-main-color">
 				<ul>
 					<li><a href="scan.html">Scan Access Points</a></li>
-					<li><a href="">Beacon Attack</a></li>
+					<li><a href="beacon.html">Beacon Attack</a></li>
 					<li><a href="monitor.html">Network Monitor</a></li>
 				</ul>
 			</div>
@@ -28,13 +28,29 @@
 			<button class="btn-main" id="netMonitorBtn" onclick="monitor.run()">START SCAN NETWORK MONITOR</button>
 		</div>
 		<div id="modal">
-			<h3>Time for running!</h3>
+			<h3>Time and Channel</h3>
 			<select class="btn-main" id="selectTiming">
 				<option value="10">10</option>
 				<option value="20">20</option>
 				<option value="30">30</option>
 				<option value="40">40</option>
 				<option value="50">50</option>
+			</select>
+			<select class="btn-main" id="selectChannel">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
 			</select>
 			<button class="btn-main" id="btnOkTiming">Ok</button>
 		</div>
@@ -43,12 +59,13 @@
 		</div>
 
 		<div id="chart-desription">
-			<h4><span style="color: green">_____</span> : Beacon line</h4>
+			<h4><span style="color: blue">_____</span> : Beacon line</h4>
 			<h4><span style="color: red">_____</span> : Deauth line</h4>
 			<h4><span style="color: yellow">_____</span> : Dissoc line</h4>
 		</div>
 	</div>
 
 	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/monitor.js"></script>
 </body>
 </html>

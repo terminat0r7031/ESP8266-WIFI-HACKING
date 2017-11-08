@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WIFI HACKING</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="bg-main-color">
+	<div id="header">
+		<div class="container">
+			<button id="menu-btn" class="pull-left">MENU</button>
+			<div id="info-user" class="pull-right">
+				<p>WIFI HACKING BOX!</p>
+			</div>
+
+			<div id="main-menu" class="bg-main-color">
+				<ul>
+					<li><a href="scan.html">Scan Access Points</a></li>
+					<li><a href="beacon.html">Beacon Attack</a></li>
+					<li><a href="monitor.html">Network Monitor</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div id="content">
+		<div class="container label-heading">
+			<div class="pull-center">
+				<h3>Beacon Attack</h3>
+			</div>
+		</div>
+		<div class="container" id="beaconAT-radio">
+			<label for="randomATBC">Random</label>
+			<input type="radio" id="randomATBC" value="0" name="beaconATradio">
+			<label for="custumATBC">Custumize</label>
+			<input type="radio" id="custumATBC" value="1" name="beaconATradio">
+			<br><br><br>
+			<table style="display: inline-block; margin: 0 auto">
+				<tbody>
+					<tr>
+						<td>Time attack</td>
+						<td><input type="number" id="timeAttackBc" min="10" max="999"></td>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+					<tr>
+						<td>SSID</td>
+						<td><input type="text" id="ssid" maxlength="30"></td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<button onClick = "_beacon.attack()" style="margin-top: 30px" class="btn-main">Attack</button>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/beacon.js"></script>
+</body>
+</html>

@@ -208,6 +208,7 @@ void requestBeaconAttack() {
     server.send(200, "text/json", "true");
   }
 }
+
 void responseBeaconAttack() {
   digitalWrite(BUILTIN_LED, LOW);
   _status = 0;

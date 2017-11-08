@@ -168,7 +168,13 @@ a{
 #tabel-scan-contain table, #table-scan-station table{
 	width: 100%;
 }
+#beaconAT-radio{
+	margin-top: 20px;
+}
 
+canvas{
+	border: 20px solid black;
+}
 
 .hide{
 	display: none !important;
