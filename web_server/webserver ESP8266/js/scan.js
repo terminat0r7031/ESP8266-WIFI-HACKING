@@ -27,14 +27,16 @@
 
   	_function.getEleByID("attack-station-btn").classList.toggle("btn-inactive");
   	_function.getEleByID("attackAllBtn").classList.toggle("btn-inactive");
+  	if(isAll) _function.getEleByID("attackAllBtn").textContent = "Attacking...";
+  	if(de_dis == "de") _function.getEleByID("DeAttackBtn").textContent = "Attacking...";
+  	else _function.getEleByID("DisAttackBtn").textContent ="Attacking...";
 
   	_function.toggleDisplay("modal", 'show');
   	_function.getEleByID("btnOkTiming").onclick = ()=>{
   		_function.toggleDisplay("modal", 'show');
-  		let time = _function.getEleByID("selectTiming").value;
 
+  		let time = _function.getEleByID("selectTiming").value;
 	  	let url = `/deDisAttack.json?time=${time}&` + `type=`; 
-	  		
 	  	url += (de_dis==='de')?"0":"1";
 	  	url += isAll?"&all=1":"&all=0";
 
@@ -46,8 +48,12 @@
 	  				.then(check=>{
 	  					if(!check){
 	  						clearInterval(checkStatus);
+
 	  						_function.getEleByID("attack-station-btn").classList.toggle("btn-inactive");
 	  						_function.getEleByID("attackAllBtn").classList.toggle("btn-inactive");
+	  						if(isAll) _function.getEleByID("attackAllBtn").textContent = "Attack";
+	  						if(de_dis == "de") _function.getEleByID("DeAttackBtn").textContent = "Deauthentication ATTACK";
+  							else _function.getEleByID("DisAttackBtn").textContent = "Disassociation ATTACK";
 	  					}
 	  				})
 	  			}, 500)
@@ -82,6 +88,7 @@
 
   function startScanST() {
   	_function.getEleByID("scanStationBtn").classList.toggle("btn-inactive");
+  	_function.getEleByID("scanStationBtn").textContent = "Scanning...";
 
   	_function.toggleDisplay("modal", 'show');
 
@@ -107,6 +114,10 @@
 		  														clearInterval(checkStatus1);
 		  														fetch("/sendScanStationResults.json").then(res=>{
 		  															res.json().then(data=>{
+
+		  																_function.getEleByID("scanStationBtn").classList.toggle("btn-inactive");
+  																		_function.getEleByID("scanStationBtn").textContent = "SCAN STATION";
+
 		  																_function.getEleByID("bssidAPSL").innerHTML = data.bssid;
 		  																let arData = data.station;
 																			console.log("data:", arData);
@@ -127,7 +138,6 @@
 																				<th>STT</th><th>STATION MAC</th><th>SELECT</th>
 																			`;
 																			document.querySelector('#table-scan-station table tbody').innerHTML = htmlTable;
-
 		  															})
 		  														})
 		  													}
@@ -176,6 +186,7 @@
   function startScanAp() {
 
   	_function.getEleByID("scanAp-btn").classList.toggle("btn-inactive");
+  	_function.getEleByID("scanAp-btn").textContent = "Scanning...";
 
 		let rs = fetch('/startScanAP.json');
 		rs.then(res=>{
@@ -184,9 +195,9 @@
 					console.log("startScanAP ", data);
 					let checkStatus = setInterval(()=>{
 						fetch('/checkStatus.json').then(res=>{
-							res.json().then(data=>{
+							res.json().then(check=>{
 								console.log("checkStatus:", data);
-								if(!data){
+								if(!check){
 									clearInterval(checkStatus);
 									console.log("START get result");
 									fetch('/requestSendScanAPResults.json').then(res1=>{
@@ -195,12 +206,16 @@
 											if(data){
 												let checkStatus1 = setInterval(()=>{
 													fetch('/checkStatus.json').then(res=>{
-														res.json().then(data=>{
+														res.json().then(check=>{
 															console.log("checkStatus1:", data);
-															if(!data){
+															if(!check){
 																clearInterval(checkStatus1);
 																fetch('/sendScanAPResults.json').then(res=>{
 																	res.json().then(data=>{
+
+																		_function.getEleByID("scanAp-btn").classList.toggle("btn-inactive");
+  																_function.getEleByID("scanAp-btn").textContent = "Scan";
+
 																		let arData = data.aps;
 																		console.log("data:", arData);
 																		let i = 0, htmlTable = "";
@@ -226,8 +241,6 @@
 																			<tr><th>STT</th><th>ESSID</th><th>BSSID</th><th>CHANEL</th><th>RSSI</th><th>ENCRYPT</th><th>HIDEN</th><th>SELECT</th></tr>
 																		`;
 																		document.querySelector('#tabel-scan-contain table tbody').innerHTML = htmlTable;
-																		
-
 																	})
 																})
 															}

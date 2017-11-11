@@ -20,9 +20,9 @@
     	time = _function.getEleByID("timeAttackBc").value;
     	ssid = _function.getEleByID("ssid").value;
 
-    	if((isRamdom && time != "") || (!isRamdom && time !="" && ssid != "")){
+    	if((isRamdom && time != "") || (!isRamdom && time !="" && ssid != "" && ssid.indexOf(" ") == -1)){
     		url = `/beaconAttack.json?random=${ssid==''?'1':'0'}&time=${time}&ssid=${ssid}`;
-    		console.log(url);
+    		console.log(url); 
 
     		_function.getEleByID("beacon-attack-btn").classList.toggle("btn-inactive");
 
@@ -41,7 +41,7 @@
     			}
     		})
     	} else{
-    		alert("You can not leave that empty!");
+    		alert("Input not valid, please input again. Thanks!");
     	}
     }
     //Private Method
