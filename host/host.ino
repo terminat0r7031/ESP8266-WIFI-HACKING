@@ -101,6 +101,7 @@ void responseSendScanAPResults() {
       if (partID == numPart) {
         numPart = 0;
         partID = 0;
+        delay(600);
         _status = 0;
       }
     }
@@ -204,19 +205,18 @@ void responseSelectStation() {
 //---- 3. TẤN CÔNG BEACON FLOOD ----//
 
 void requestBeaconAttack() {
-  if(server.hasArg("random") && server.hasArg("time") && server.hasArg("ssid")){
+  if (server.hasArg("random") && server.hasArg("time") && server.hasArg("ssid")) {
     int rd = server.arg("random").toInt();
-    if(rd==1){
-      _status = 1;
+    _status = 1;
+    if (rd == 1) {
       String cmd = "RQ_BC_AT ";
       cmd += rd;
       cmd += " ";
       cmd += server.arg("time").toInt();
       Serial.println(cmd);
-      server.send(200,"text/json","true");
+      server.send(200, "text/json", "true");
     }
-    else{
-      _status = 1;
+    else {
       String cmd = "RQ_BC_AT ";
       cmd += rd;
       cmd += " ";
@@ -224,18 +224,18 @@ void requestBeaconAttack() {
       cmd += " ";
       cmd += server.arg("ssid");
       Serial.println(cmd);
-      server.send(200,"text/json","true");
+      server.send(200, "text/json", "true");
     }
   }
-//  if (server.hasArg("ssid") && server.hasArg("time")) {
-//    _status = 1;
-//    String cmd = "RQ_BC_AT ";
-//    cmd += server.arg("ssid");
-//    cmd += " ";
-//    cmd += server.arg("time").toInt();
-//    Serial.println(cmd);
-//    server.send(200, "text/json", "true");
-//  }
+  //  if (server.hasArg("ssid") && server.hasArg("time")) {
+  //    _status = 1;
+  //    String cmd = "RQ_BC_AT ";
+  //    cmd += server.arg("ssid");
+  //    cmd += " ";
+  //    cmd += server.arg("time").toInt();
+  //    Serial.println(cmd);
+  //    server.send(200, "text/json", "true");
+  //  }
 }
 
 void responseBeaconAttack() {
@@ -323,10 +323,10 @@ void checkStatus() {
 void loadIndexHTML() {
   sendFile(200, "text/html", data_indexHTML, sizeof(data_indexHTML));
 }
-void loadScanApHTML(){
+void loadScanApHTML() {
   sendFile(200, "text/html", data_scanApHTML, sizeof(data_scanApHTML));
 }
-void loadMonitorHTML(){
+void loadMonitorHTML() {
   sendFile(200, "text/html", data_monitorHTML, sizeof(data_monitorHTML));
 }
 void loadBeaconHTML(){
