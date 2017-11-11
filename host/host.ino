@@ -101,6 +101,7 @@ void responseSendScanAPResults() {
       if (partID == numPart) {
         numPart = 0;
         partID = 0;
+        delay(600);
         _status = 0;
       }
     }
