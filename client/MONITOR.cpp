@@ -210,7 +210,7 @@ void MONITOR::sendBadResults() {
     tmp += json.substring(0, 99);
     json = json.substring(99);
     Serial.println(tmp);
-    delay(500);
+    delay(750);
     tmp = "";
   }
 }
