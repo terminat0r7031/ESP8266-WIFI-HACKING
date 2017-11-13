@@ -101,7 +101,7 @@ void responseSendScanAPResults() {
       if (partID == numPart) {
         numPart = 0;
         partID = 0;
-        delay(600);
+        delay(750);
         _status = 0;
       }
     }
@@ -160,7 +160,7 @@ void requestSendScanStationResults() {
   server.send(200, "text/json", "true");
 }
 void responseSendScanStationResults() {
-  digitalWrite(BUILTIN_LED, LOW);
+  digitalWrite(BUILTIN_LED, LOW); 
   char* argu = sCmd.next();
   if (argu != NULL) {
     numPart = atoi(argu);
@@ -171,6 +171,7 @@ void responseSendScanStationResults() {
       if (partID == numPart) {
         numPart = 0;
         partID = 0;
+        delay(750);
         _status = 0;
       }
     }
