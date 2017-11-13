@@ -160,7 +160,7 @@ void requestSendScanStationResults() {
   server.send(200, "text/json", "true");
 }
 void responseSendScanStationResults() {
-  digitalWrite(BUILTIN_LED, LOW); 
+  digitalWrite(BUILTIN_LED, LOW);
   char* argu = sCmd.next();
   if (argu != NULL) {
     numPart = atoi(argu);
@@ -330,7 +330,7 @@ void loadScanApHTML() {
 void loadMonitorHTML() {
   sendFile(200, "text/html", data_monitorHTML, sizeof(data_monitorHTML));
 }
-void loadBeaconHTML(){
+void loadBeaconHTML() {
   sendFile(200, "text/html", data_beaconHTML, sizeof(data_beaconHTML));
 }
 
@@ -426,12 +426,12 @@ void setup() {
   server.on("/scan.html", loadScanApHTML);
   server.on("/monitor.html", loadMonitorHTML);
   server.on("/beacon.html", loadBeaconHTML);
-  
+
   server.on("/js/script.js", loadScriptJS);
   server.on("/js/scan.js", loadScanJS);
   server.on("/js/monitor.js", loadMonitorJS);
   server.on("/js/beacon.js", loadBeaconJS);
-  
+
   server.on("/css/style.css", loadStyleCSS);
   server.begin();
 }
