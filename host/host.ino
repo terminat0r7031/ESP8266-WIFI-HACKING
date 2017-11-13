@@ -101,7 +101,7 @@ void responseSendScanAPResults() {
       if (partID == numPart) {
         numPart = 0;
         partID = 0;
-        delay(600);
+        delay(750);
         _status = 0;
       }
     }
@@ -171,6 +171,7 @@ void responseSendScanStationResults() {
       if (partID == numPart) {
         numPart = 0;
         partID = 0;
+        delay(750);
         _status = 0;
       }
     }
@@ -329,7 +330,7 @@ void loadScanApHTML() {
 void loadMonitorHTML() {
   sendFile(200, "text/html", data_monitorHTML, sizeof(data_monitorHTML));
 }
-void loadBeaconHTML(){
+void loadBeaconHTML() {
   sendFile(200, "text/html", data_beaconHTML, sizeof(data_beaconHTML));
 }
 
@@ -425,12 +426,12 @@ void setup() {
   server.on("/scan.html", loadScanApHTML);
   server.on("/monitor.html", loadMonitorHTML);
   server.on("/beacon.html", loadBeaconHTML);
-  
+
   server.on("/js/script.js", loadScriptJS);
   server.on("/js/scan.js", loadScanJS);
   server.on("/js/monitor.js", loadMonitorJS);
   server.on("/js/beacon.js", loadBeaconJS);
-  
+
   server.on("/css/style.css", loadStyleCSS);
   server.begin();
 }
