@@ -33,7 +33,7 @@ SerialCommand::SerialCommand()
     term('\n'),           // default terminator for commands, newline character
     last(NULL)
 {
-  strcpy(delim, "."); // strtok_r needs a null-terminated string
+  strcpy(delim, "/"); // strtok_r needs a null-terminated string
   clearBuffer();
 }
 

@@ -187,9 +187,9 @@ void SCAN::sendResults() { //using json
   int numPart = (int) (_size/50) + 1;
   String tmp="";
   while(json!=""){
-    tmp += "RS_S_AP_R.";
+    tmp += "RS_S_AP_R/";
     tmp += numPart;
-    tmp += ".";
+    tmp += "/";
     tmp += json.substring(0,50);
     json = json.substring(50);
     Serial.println(tmp);
@@ -239,7 +239,7 @@ void SCAN::printSelected() {
 }
 void SCAN::parseEssid(){
   for(int i=0; i<numOfNetwork && i < maxNumOfNetwork; i++){
-    essid[i].replace("."," ");
+    essid[i].replace("/"," ");
   }
 }
 
