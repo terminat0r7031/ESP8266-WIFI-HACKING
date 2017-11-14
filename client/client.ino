@@ -210,7 +210,7 @@ String charToString(const char* s) {
   return str;
 }
 void setup() {
-  Serial.begin(115200);                                                           // thiết lập cổng Serial hoạt động ở tốc độ 115200
+  Serial.begin(57600);                                                           // thiết lập cổng Serial hoạt động ở tốc độ 115200
   pinMode(BUILTIN_LED, OUTPUT);                                                   // thiết lập pin LED hoạt động ở chế độ OUTPUT
   digitalWrite(BUILTIN_LED, HIGH);                                                // tắt LED
 

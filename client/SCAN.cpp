@@ -192,7 +192,7 @@ void SCAN::sendResults() { //using json
     tmp += json.substring(0,50);
     json = json.substring(50);
     Serial.println(tmp);
-    delay(350);
+    delay(750);
     tmp = "";
   }
 }
