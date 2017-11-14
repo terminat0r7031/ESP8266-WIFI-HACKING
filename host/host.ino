@@ -386,7 +386,7 @@ void sendFile(int code, String type, const char* adr, size_t len) {
   sendBuffer();
 }
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(57600);
   SPIFFS.begin();
   startWifi();
   pinMode(BUILTIN_LED, OUTPUT);
