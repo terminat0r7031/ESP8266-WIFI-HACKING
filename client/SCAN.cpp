@@ -130,6 +130,7 @@ void SCAN::sortByRssi() {
     }
 }
 void SCAN::sendResults() { //using json
+  parseEssid();     //thay ky tu "." -> " "
   sortByRssi();     //sap xep theo RSSI
   /*
     JSON template
@@ -235,6 +236,11 @@ void SCAN::printSelected() {
     }
   }
   delay(1);
+}
+void SCAN::parseEssid(){
+  for(int i=0; i<numOfNetwork && i < maxNumOfNetwork; i++){
+    essid[i].replace("."," ");
+  }
 }
 
 

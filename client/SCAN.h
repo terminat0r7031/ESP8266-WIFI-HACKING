@@ -39,6 +39,7 @@ class SCAN {
     void  sendResults();
     int numOfAPSelected();
     void printSelected();
+    void parseEssid();
 };
 #endif
 
