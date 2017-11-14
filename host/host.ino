@@ -101,7 +101,6 @@ void responseSendScanAPResults() {
       if (partID == numPart) {
         numPart = 0;
         partID = 0;
-        delay(750);
         _status = 0;
       }
     }
@@ -171,7 +170,6 @@ void responseSendScanStationResults() {
       if (partID == numPart) {
         numPart = 0;
         partID = 0;
-        delay(750);
         _status = 0;
       }
     }
