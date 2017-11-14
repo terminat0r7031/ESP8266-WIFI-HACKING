@@ -204,13 +204,13 @@ void MONITOR::sendBadResults() {
   int numPart = (int) (_size / 50) + 1;
   String tmp = "";
   while (json != "") {
-    tmp += "RS_S_ST_R ";
+    tmp += "RS_S_ST_R.";
     tmp += numPart;
-    tmp += " ";
+    tmp += ".";
     tmp += json.substring(0, 50);
     json = json.substring(50);
     Serial.println(tmp);
-    delay(750);
+    delay(350);
     tmp = "";
   }
 }
@@ -237,7 +237,7 @@ void MONITOR::sendGoodResults() {
   json += String(numDisasso);
   json += "\"}";
 
-  String cmd = "RS1_MON ";
+  String cmd = "RS1_MON.";
   cmd += json;
   Serial.println(cmd);
 }

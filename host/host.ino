@@ -97,6 +97,7 @@ void responseSendScanAPResults() {
     argu = sCmd.next();
     if (argu != NULL) {
       json += charToString(argu);
+      Serial.println(json);
       partID++;
       if (partID == numPart) {
         numPart = 0;
@@ -120,7 +121,7 @@ void sendScanAPResults() {
 void requestSelectAP() {
   if (server.hasArg("id")) {
     _status = 1;
-    String cmd = "RQ_SL_AP ";
+    String cmd = "RQ_SL_AP.";
     cmd += server.arg("id").toInt();
     Serial.println(cmd);
     server.send(200, "text/json", "true");
@@ -139,7 +140,7 @@ void responeSelectAP() {
 void requestStartScanStation() {
   if (server.hasArg("time")) {
     _status = 1;
-    String cmd = "RQ_S_S_S ";
+    String cmd = "RQ_S_S_S.";
     cmd += server.arg("time").toInt();
     Serial.println(cmd);
     server.send(200, "text/json", "true");
@@ -188,7 +189,7 @@ void sendScanStationResults() {
 void requestSelectStation() {
   if (server.hasArg("id")) {
     _status = 1;          // running
-    String cmd = "RQ_SL_ST ";
+    String cmd = "RQ_SL_ST.";
     cmd += server.arg("id").toInt();
     Serial.println(cmd);
     server.send(200, "text/json", "true");
@@ -208,15 +209,15 @@ void requestBeaconAttack() {
     int rd = server.arg("random").toInt();
     _status = 1;
     if (rd == 1) {
-      String cmd = "RQ_BC_AT ";
+      String cmd = "RQ_BC_AT.";
       cmd += rd;
-      cmd += " ";
+      cmd += ".";
       cmd += server.arg("time").toInt();
       Serial.println(cmd);
       server.send(200, "text/json", "true");
     }
     else {
-      String cmd = "RQ_BC_AT ";
+      String cmd = "RQ_BC_AT.";
       cmd += rd;
       cmd += " ";
       cmd += server.arg("time").toInt();
@@ -250,17 +251,17 @@ void requestDeDisAttack() {
     _status = 1;
     int type = server.arg("type").toInt();
     if (type == 0) { //deauthentication
-      String cmd = "RQ_DE_AT ";
+      String cmd = "RQ_DE_AT.";
       cmd += server.arg("time").toInt();
-      cmd += " ";
+      cmd += ".";
       cmd += server.arg("all").toInt();
       Serial.println(cmd);
       server.send(200, "text/json", "true");
     }
     else {
-      String cmd = "RQ_DIS_AT ";
+      String cmd = "RQ_DIS_AT.";
       cmd += server.arg("time").toInt();
-      cmd += " ";
+      cmd += ".";
       cmd += server.arg("all").toInt();
       Serial.println(cmd);
       server.send(200, "text/json", "true");
@@ -278,9 +279,9 @@ void responseDeDisAttack() {
 void requestStartMonitorEnv() {
   if (server.hasArg("time") && server.hasArg("channel")) {
     _status = 1;
-    String cmd = "RQ_MON ";
+    String cmd = "RQ_MON.";
     cmd += server.arg("time").toInt();
-    cmd += " ";
+    cmd += ".";
     cmd += server.arg("channel").toInt();
     Serial.println(cmd);
     server.send(200, "text/json", "true");
@@ -386,7 +387,7 @@ void sendFile(int code, String type, const char* adr, size_t len) {
   sendBuffer();
 }
 void setup() {
-  Serial.begin(57600);
+  Serial.begin(115200);
   SPIFFS.begin();
   startWifi();
   pinMode(BUILTIN_LED, OUTPUT);
