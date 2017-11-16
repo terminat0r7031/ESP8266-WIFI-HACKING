@@ -16,7 +16,7 @@ char data_websiteBuffer[bufSize];
 ESP8266WebServer server(80);
 SerialCommand sCmd;
 
-const char* essid = "pwn_at";
+const char* essid = "pwn123";
 const char* password = "khongbietdau";
 
 //----KHAI BAO PROTOTYPE----------//
@@ -73,7 +73,6 @@ void startWifi() {
 void requestStartScanAP() {
   // Gửi lệnh cho mạch CLIENT
   _status = 1;            // running
-  Serial.println("-");
   Serial.println("RQ_S_S_AP");
   server.send(200, "text/json", "true");
 }
@@ -99,7 +98,6 @@ void responseSendScanAPResults() {
     argu = sCmd.next();
     if (argu != NULL) {
       json += charToString(argu);
-      Serial.println(json);
       partID++;
       if (partID == numPart) {
         numPart = 0;
@@ -122,7 +120,7 @@ void sendScanAPResults() {
 void requestSelectAP() {
   if (server.hasArg("id")) {
     _status = 1;
-    String cmd = "RQ_SELC_AP/";
+    String cmd = "RQ_SL_AP/";
     cmd += server.arg("id").toInt();
     Serial.println(cmd);
     server.send(200, "text/json", "true");
@@ -189,7 +187,6 @@ void sendScanStationResults() {
 //---------------------------------
 void requestSelectStation() {
   if (server.hasArg("id")) {
-    Serial.println("-");
     _status = 1;          // running
     String cmd = "RQ_SL_ST/";
     cmd += server.arg("id").toInt();
