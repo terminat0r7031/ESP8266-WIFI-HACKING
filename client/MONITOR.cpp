@@ -201,16 +201,16 @@ void MONITOR::sendBadResults() {
     }
   }
   json += "]}";
-  int numPart = (int) (_size / 50) + 1;
+  int numPart = (int) (_size / 99) + 1;
   String tmp = "";
   while (json != "") {
     tmp += "RS_S_ST_R/";
     tmp += numPart;
     tmp += "/";
-    tmp += json.substring(0, 50);
-    json = json.substring(50);
+    tmp += json.substring(0, 99);
+    json = json.substring(99);
     Serial.println(tmp);
-    delay(350);
+    delay(750);
     tmp = "";
   }
 }

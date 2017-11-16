@@ -56,7 +56,7 @@
   							else _function.getEleByID("DisAttackBtn").textContent = "Disassociation ATTACK";
 	  					}
 	  				})
-	  			}, 500)
+	  			}, 800)
 	  		}
 	  	})
 	  }
@@ -81,7 +81,7 @@
 								_function.toggleDisplay("attack-station-btn", 'show');
   					}
   				})
-				}, 500)
+				}, 200)
   		}
   	})
   }
@@ -177,7 +177,7 @@
   							}
   						})
   					})
-  				}, 500)
+  				}, 200)
   			}
   		})
   	})
@@ -210,45 +210,45 @@
 															console.log("checkStatus1:", data);
 															if(!check){
 																clearInterval(checkStatus1);
-																setTimeout(()=>{
+																// setTimeout(()=>{
 																fetch('/sendScanAPResults.json').then(res=>{
 																	res.json().then(data=>{
 																		console.log(data);
-																		// _function.getEleByID("scanAp-btn").classList.toggle("btn-inactive");
-  																	//_function.getEleByID("scanAp-btn").textContent = "Scan";
+																		 _function.getEleByID("scanAp-btn").classList.toggle("btn-inactive");
+  																	_function.getEleByID("scanAp-btn").textContent = "Scan";
 
-																		// let arData = data.aps;
-																		// console.log("data:", arData);
-																		// let i = 0, htmlTable = "";
+																		 let arData = data.aps;
+																		 console.log("data:", arData);
+																		 let i = 0, htmlTable = "";
 																			
-																		// for(let data of arData){
-																		// 	htmlTable += `
-																		// 		<tr>
-																		// 			<td><p>${i+1}</p></td>
-																		// 			<td><p>${data.n}</p></td>
-																		// 			<td><p>${data.b}</p></td>
-																		// 			<td><p>${data.c}</p></td>
-																		// 			<td><p>${data.r}</p></td>
-																		// 			<td><p>${data.e}</p></td>
-																		// 			<td><p>${data.h}</p></td>
-																		// 			<td>
-																		// 				<button class="btn-main btn-selectAP" id="selectAPId${i}" >Select</button>
-																		// 			</td>
-																		// 		</tr>
-																		// 	`;
-																		// 	i++;
-																		// }
-																		// document.querySelector('#tabel-scan-contain table thead').innerHTML = `
-																		// 	<tr><th>STT</th><th>ESSID</th><th>BSSID</th><th>CHANEL</th><th>RSSI</th><th>ENCRYPT</th><th>HIDEN</th><th>SELECT</th></tr>
-																		// `;
-																		// document.querySelector('#tabel-scan-contain table tbody').innerHTML = htmlTable;
+																		 for(let data of arData){
+																		 	htmlTable += `
+																		 		<tr>
+																		 			<td><p>${i+1}</p></td>
+																		 			<td><p>${data.n}</p></td>
+																		 			<td><p>${data.b}</p></td>
+																		 			<td><p>${data.c}</p></td>
+																		 			<td><p>${data.r}</p></td>
+																		 			<td><p>${data.e}</p></td>
+																		 			<td><p>${data.h}</p></td>
+																		 			<td>
+																		 				<button class="btn-main btn-selectAP" id="selectAPId${i}" >Select</button>
+																		 			</td>
+																		 		</tr>
+																		 	`;
+																		 	i++;
+																		 }
+																		 document.querySelector('#tabel-scan-contain table thead').innerHTML = `
+																		 	<tr><th>STT</th><th>ESSID</th><th>BSSID</th><th>CHANEL</th><th>RSSI</th><th>ENCRYPT</th><th>HIDEN</th><th>SELECT</th></tr>
+																		 `;
+																		 document.querySelector('#tabel-scan-contain table tbody').innerHTML = htmlTable;
 																	})
 																})
-																}, 1000)
+																// }, 800)
 															}
 														})
 													})
-												}, 400)
+												}, 800)
 											}
 										})
 
@@ -256,7 +256,7 @@
 								}
 							})
 						})
-					}, 400)
+					}, 800)
 				}
 			})
 		})
