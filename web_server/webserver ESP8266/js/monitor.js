@@ -42,7 +42,7 @@
 			ctx.stroke();
 				//draw num cot
 				for(let i = 0; i <= maxGoiTin/50; i++){
-					ctx.fillText( (maxGoiTin - i*50).toString() ,dramX/13, dramY+5 + i*5*dramY);
+					ctx.fillText( (maxGoiTin - i*50).toString() ,dramX/13, h - dramY - (h - 2*dramY)*(8-i)/8);
 				}
 				ctx.fillText("(frames)", 30, 10);
 			//draw doc ngang
@@ -73,23 +73,24 @@
     	ctx.beginPath();
     	ctx.strokeStyle = "blue";
     	ctx.moveTo(x1,y1);
-			x1 = x1+(dramX*(time/2-1))/(time/2); y1 = value.bc==0?(h - dramY):(h - value.bc*dramY/10);
-			ctx.lineTo(x1, y1);
-			ctx.stroke();
+				
+		x1 = x1+(dramX*(time/2-1))/(time/2); y1 = (h - dramY - (h - 2*dramY)*value.bc/400);
+		ctx.lineTo(x1, y1);
+		ctx.stroke();
 
-			ctx.beginPath();
-			ctx.strokeStyle = "red";
-			ctx.moveTo(x2,y2);
-			x2 = x2+(dramX*(time/2-1))/(time/2); y2 = value.de==0?(h - dramY):(h - value.de*dramY/10);
-			ctx.lineTo(x2, y2);
-			ctx.stroke();
+		ctx.beginPath();
+		ctx.strokeStyle = "red";
+		ctx.moveTo(x2,y2);
+		x2 = x2+(dramX*(time/2-1))/(time/2); y2 = (h - dramY - (h - 2*dramY)*value.de/400);
+		ctx.lineTo(x2, y2);
+		ctx.stroke();
 
-			ctx.beginPath();
-			ctx.strokeStyle = "yellow";
-			ctx.moveTo(x3,y3);
-			x3 = x3+(dramX*(time/2-1))/(time/2); y3 = value.dis==0?(h - dramY):(h - value.dis*dramY/10);
-			ctx.lineTo(x3, y3);
-			ctx.stroke();
+		ctx.beginPath();
+		ctx.strokeStyle = "yellow";
+		ctx.moveTo(x3,y3);
+		x3 = x3+(dramX*(time/2-1))/(time/2); y3 = (h - dramY - (h - 2*dramY)*value.dis/400);
+		ctx.lineTo(x3, y3);
+		ctx.stroke();
     }
 
     monitor.getData = ()=>{
@@ -118,8 +119,10 @@
 
 		// setInterval(()=>{
 		// 	value.bc = _function.randInt(20,50);
-		// 	value.de = _function.randInt(10,100);
+		// 	value.de = _function.randInt(20,150);
 		// 	value.dis = _function.randInt(20,150);
+
+		// 	console.log(value.bc);
 		// 	monitor.drawChart();
 		// }, 2000)
 
