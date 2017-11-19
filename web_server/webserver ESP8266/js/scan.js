@@ -56,7 +56,7 @@
   							else _function.getEleByID("DisAttackBtn").textContent = "Disassociation ATTACK";
 	  					}
 	  				})
-	  			}, 800)
+	  			}, 400)
 	  		}
 	  	})
 	  }
@@ -81,7 +81,7 @@
 								_function.toggleDisplay("attack-station-btn", 'show');
   					}
   				})
-				}, 200)
+				}, 400)
   		}
   	})
   }
@@ -114,6 +114,7 @@
 		  														clearInterval(checkStatus1);
 		  														fetch("/sendScanStationResults.json").then(res=>{
 		  															res.json().then(data=>{
+		  																_function.getEleByID("table-scan-station").classList.remove("hide");
 
 		  																_function.getEleByID("scanStationBtn").classList.toggle("btn-inactive");
   																		_function.getEleByID("scanStationBtn").textContent = "SCAN STATION";
@@ -174,10 +175,10 @@
   								_function.getEleByID("selectAPId"+i).classList.toggle("btn-active");
 
   								_function.toggleDisplay("scan-station-btn", 'show');
-  							}
+  								_function.getEleByID("table-scan-station").classList.add("hide");						}
   						})
   					})
-  				}, 200)
+  				}, 400)
   			}
   		})
   	})

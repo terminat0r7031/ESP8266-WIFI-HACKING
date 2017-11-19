@@ -60,9 +60,13 @@
 document.addEventListener("click", (e)=>{
 	var id = e.target.id;
 	if(id.indexOf("selectAPId") != -1){
-		scan.selectAP(parseInt(id.split("").reverse().join("")));
+		let idSelect = parseInt(id.split("").reverse().join(""));
+		console.log("selectAPwithID:" + idSelect); 
+		scan.selectAP(idSelect);
 	}
 	if(id.indexOf("selectSTId") != -1){
-		scan.selectST(parseInt(id.split("").reverse().join("")));
+		let idSelect = parseInt(id.split("").reverse().join(""));
+		console.log("selectSTwithID:" + idSelect);
+		scan.selectST(idSelect);
 	}
 })
