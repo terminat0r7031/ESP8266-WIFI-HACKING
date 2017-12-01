@@ -125,12 +125,12 @@
 																			console.log("data:", arData);
 																			let i = 0, htmlTable = "";
 																			for(let data of arData){
-																			const name = [data.split(":")[0],data.split(":")[1],data.split(":")[2]].join(":").toUpperCase();
+																			let name = strName[data.slice(0,8).toUpperCase()];
+																			name = name ? name + data.slice(8, data.length) : data;
 																			htmlTable += `
 																				<tr>
 																					<td>${i+1}</td>
-																					<td>${strName[name]}</td>
-																					<td>${data}</td>
+																					<td>${name}</td>
 																					<td>
 																					<button class="btn-main btn-selectST" id="selectSTId${i}" >Select</button>
 																					</td>
@@ -139,7 +139,7 @@
 																			i++;
 																			}
 																			document.querySelector('#table-scan-station table thead').innerHTML = `
-																				<th>STT</th><th>NAME</th><th>STATION MAC</th><th>SELECT</th>
+																				<th>STT</th><th>STATION MAC</th><th>SELECT</th>
 																			`;
 																			document.querySelector('#table-scan-station table tbody').innerHTML = htmlTable;
 		  															})
