@@ -117,36 +117,36 @@
 	  		channel = _function.getEleByID("selectChannel").value;
 	  		monitor.initChart();
 
-		setInterval(()=>{
-			value.bc = _function.randInt(20,50);
-			value.de = _function.randInt(20,150);
-			value.dis = _function.randInt(20,150);
+		// setInterval(()=>{
+		// 	value.bc = _function.randInt(20,50);
+		// 	value.de = _function.randInt(20,150);
+		// 	value.dis = _function.randInt(20,150);
 
-			console.log(value.bc);
-			monitor.drawChart();
-		}, 2000)
+		// 	console.log(value.bc);
+		// 	monitor.drawChart();
+		// }, 2000)
 
-    		// let url= `/startMonitorEnv.json?time=${time}&channel=${channel}`;
-    		// fetch(url).then(res=>res.json())
-    		// .then(data=>{
-    		// 	if(data){
-    		// 		let checkStatus = setInterval(()=>{
-    		// 			fetch('/checkStatus.json').then(res=>res.json())
-    		// 			.then(check=>{
-    		// 				if(check){
-    		// 					numCheck++;
-    		// 					monitor.getData();
-    		// 				} else {
-    		// 					clearInterval(intervalGetData);
-    		// 					clearInterval(checkStatus);
-    		// 					console.log('done');
-    		// 					return false;
-    		// 				}
-    		// 			})	
-    		// 		}, 500)
+    		let url= `/startMonitorEnv.json?time=${time}&channel=${channel}`;
+    		fetch(url).then(res=>res.json())
+    		.then(data=>{
+    			if(data){
+    				let checkStatus = setInterval(()=>{
+    					fetch('/checkStatus.json').then(res=>res.json())
+    					.then(check=>{
+    						if(check){
+    							numCheck++;
+    							monitor.getData();
+    						} else {
+    							clearInterval(intervalGetData);
+    							clearInterval(checkStatus);
+    							console.log('done');
+    							return false;
+    						}
+    					})	
+    				}, 500)
     				
-    		// 	}
-    		// })
+    			}
+    		})
     	}
     }
     //Private Method
