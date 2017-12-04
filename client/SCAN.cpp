@@ -130,7 +130,7 @@ void SCAN::sortByRssi() {
     }
 }
 void SCAN::sendResults() { //using json
-  parseEssid();     //thay ky tu "." -> " "
+  parseEssid();     //thay ky tu "/" -> " "
   sortByRssi();     //sap xep theo RSSI
   /*
     JSON template
