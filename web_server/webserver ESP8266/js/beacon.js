@@ -11,7 +11,7 @@
     		_function.getEleByID("ssid").disabled  = true;
     		_function.getEleByID("ssid").value = "";
     	}
-    	_function.getEleByID("custumATBC").onclick = ()=>{
+    	_function.getEleByID("customATBC").onclick = ()=>{
     		isRamdom = false;
     		_function.getEleByID("ssid").disabled  = false;
     	}
