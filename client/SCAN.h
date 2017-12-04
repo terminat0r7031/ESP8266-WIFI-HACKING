@@ -4,11 +4,11 @@
 #include<ESP8266WiFi.h>
 #include"MAC.h"
 #include"MACLIST.h"
-#include<ESP8266WebServer.h>
-extern ESP8266WebServer server;
-extern void sendBuffer();
-extern void sendToBuffer(String str);
-extern void sendHeader(int code, String type, size_t _size);
+//#include<ESP8266WebServer.h>
+//extern ESP8266WebServer server;
+//extern void sendBuffer();
+//extern void sendToBuffer(String str);
+//extern void sendHeader(int code, String type, size_t _size);
 
 class SCAN {
   private:
