@@ -75,7 +75,5 @@ class BEACON {
     void attack(int timeout); //random SSID
     void attack(String& tssid, int timeout);
     String randomSSID();
-    void start();
-    void stop();
 };
 #endif
