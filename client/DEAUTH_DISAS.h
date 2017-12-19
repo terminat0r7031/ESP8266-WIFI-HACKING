@@ -29,6 +29,5 @@ class DEAUTH_DISAS {
     DEAUTH_DISAS();
     bool send();
     void attack(int timeout, uint8_t fc, int all); // fc = 0xc0 -> deauthentication frame | 0xa0 -> disassociation frame
-    void start();
 };
 #endif
